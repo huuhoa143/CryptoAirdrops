@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In</title>
+
+    <%- include ../layout/head.ejs %>
+    <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea'
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <%- include ../layout/navigation.ejs %>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Add new Post
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <%if (data && data.error) {%>
+                        <div id="post-alert" class="alert alert-danger col-sm-12">
+                            <%= data.error%>
+                        </div>
+
+                    <%}%>
+
+                    <form role="form" method="POST" action="/admin/post/new">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input class="form-control" name="title" placeholder="Title">
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea class="form-control" name="content" placeholder="Content"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Website</label>
+                            <input class="form-control" name="website" placeholder="Website">
+                        </div>
+                        <div class="form-group">
+                            <label>Ico Price</label>
+                            <input class="form-control" name="icoprice" placeholder="Ico Price">
+                        </div>
+                        <div class="form-group">
+                            <label>Ticker</label>
+                            <input class="form-control" name="ticker" placeholder="Ticker">
+                        </div>
+                        <div class="form-group">
+                            <label>Total Supply</label>
+                            <input class="form-control" name="totalsupply" placeholder="Total Supply">
+                        </div>
+                        <div class="form-group">
+                            <label>Twitter</label>
+                            <input class="form-control" name="twitter" placeholder="Twitter">
+                        </div>
+                        <div class="form-group">
+                            <label>Facebook</label>
+                            <input class="form-control" name="facebook" placeholder="Facebook">
+                        </div>
+                        <div class="form-group">
+                            <label>Telegram</label>
+                            <input class="form-control" name="telegram" placeholder="Telegram">
+                        </div>
+                        <div class="form-group">
+                            <label>Bolt</label>
+                            <input class="form-control" name="bolt" placeholder="Bolt">
+                        </div>
+                        <div class="form-group">
+                            <label>Platform</label>
+                            <input class="form-control" name="platform" placeholder="Platform">
+                        </div>
+                        <div class="form-group">
+                            <label>Airdrops Start</label>
+                            <input class="form-control" name="start" placeholder="Airdrops Start">
+                        </div>
+                        <input type="submit" name="" value="Add" class="btn btn-success">
+                    </form>
+                </div>
+                <!-- /.col-lg-6 (nested) -->
+            </div>
+            <!-- /.row (nested) -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In</title>
+
+    <%- include ../layout/head.ejs %>
+    <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea'
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <%- include ../layout/navigation.ejs %>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Edit Post
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <%if (data && data.error) {%>
+                        <div id="post-alert" class="alert alert-danger col-sm-12">
+                            <%= data.error%>
+                        </div>
+
+                    <%}%>
+
+                    <form role="form" method="" action="">
+                        <input class="id" type="hidden" name="id" value="<% if (data && data.post) {%><%= data.post.id%><%}%>">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input class="form-control title" name="title" placeholder="Title" value="<% if (data && data.post) {%><%= data.post.title%><%}%>">
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea class="form-control" name="content" placeholder="Content"><% if (data && data.post) {%><%= data.post.content%><%}%></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Website</label>
+                            <input class="form-control website" name="website" placeholder="Website" value="<% if (data && data.post) {%><%= data.post.website%><%}%>">
+                        </div>
+                        <div class="form-group">
+                            <label>Ico Price</label>
+                            <input class="form-control icoprice" name="icoprice" placeholder="Ico Price" value="<% if (data && data.post) {%><%= data.post.icoprice%><%}%>">
+                        </div>
+                        <div class="form-group">
+                            <label>Ticker</label>
+                            <input class="form-control ticker" name="ticker" placeholder="Ticker" value="<% if (data && data.post) {%><%= data.post.ticker%><%}%>">
+                        </div>
+                        <div class="form-group">
+                            <label>Total Supply</label>
+                            <input class="form-control totalsupply" name="totalsupply" placeholder="Total Supply" value="<% if (data && data.post) {%><%= data.post.totalsupply%><%}%>">
+                        </div>
+                        <div class="form-group">
+                            <label>Twitter</label>
+                            <input class="form-control twitter" name="twitter" placeholder="Twitter" value="<% if (data && data.post) {%><%= data.post.twitter%><%}%>">
+                        </div>
+                        <div class="form-group">
+                            <label>Facebook</label>
+                            <input class="form-control facebook" name="facebook" placeholder="Facebook" value="<% if (data && data.post) {%><%= data.post.facebook%><%}%>">
+                        </div>
+                        <div class="form-group">
+                            <label>Telegram</label>
+                            <input class="form-control telegram" name="telegram" placeholder="telegram" value="<% if (data && data.post) {%><%= data.post.telegram%><%}%>">
+                        </div>
+                        <div class="form-group">
+                            <label>Bolt</label>
+                            <input class="form-control bolt" name="bolt" placeholder="Bolt" value="<% if (data && data.post) {%><%= data.post.bolt%><%}%>">
+                        </div>
+                        <div class="form-group">
+                            <label>Platform</label>
+                            <input class="form-control platform" name="platform" placeholder="Platform" value="<% if (data && data.post) {%><%= data.post.platform%><%}%>">
+                        </div>
+                        <div class="form-group">
+                            <label>Airdrop Start</label>
+                            <input class="form-control start" name="start" placeholder="Airdrop Start" value="<% if (data && data.post) {%><%= data.post.start%><%}%>">
+                        </div>
+                        <input type="button" name="" value="Edit" class="btn btn-success post_edit">
+                    </form>
+                </div>
+                <!-- /.col-lg-6 (nested) -->
+            </div>
+            <!-- /.row (nested) -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+<script type="text/javascript" src = "/static/javascripts/post.js"></script>
+</body>
+</html>

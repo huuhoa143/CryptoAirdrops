@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font: 13px Helvetica, Arial}
+        form {background: #000; padding: 3px; position: fixed; bottom: 10px; width: 95%}
+        form input {border: 0; padding: 10px; width: 90%; margin-right: .5%;}
+        #conversation { list-style-type: none; margin: 0; padding: 0;}
+        #conversation li {padding: 5px 10px;}
+        #conversation li:nth-child(odd) {background: #eee;}
+    </style>
+</head>
+<body>
+    <div class= "container">
+        <ul id = "conversation">
+
+        </ul>
+
+        <form>
+            <input type="text" name="message" id = "message"/>
+            <button class="btn btn-success" id = "btn_send">Send</button>
+        </form>
+    </div>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect("http://localhost:3000");
+
+        socket.on("connect", function () {
+            console.log("User is connecting to server");
+        });
+
+        // Ask Name
+        var username = prompt("What is your name?");
+
+        // emit gui len, thong bao
+        // Notify to server
+        socket.emit("adduser", username);
+
+        // Listen update_message event
+
+        socket.on("update_message", function (data) {
+           $("#conversation").append("<li> <b>" + data.sender + ": </b>" + data.message + "</li>");
+        });
+
+        // Send message event
+        $("#btn_send").click(function (e) {
+            // Get message
+
+            var message = $("#message").val();
+            $("#message").val("");
+
+            if(message.trim().length != 0) {
+                socket.emit("send_message", message);
+            }
+        });
+        
+        $("form").submit(function () {
+            return false;
+        });
+        
+        // Click enter
+        $("#message").keypress(function (e) {
+            // Enter event
+            if(e.which == 13) {
+                $("#btn_send").trigger("click");
+            }
+        });
+    </script>
+</body>
+</html>
