@@ -89,9 +89,11 @@
 <section class="ptb-0">
     <div class="mb-30 brdr-ash-1 opacty-5"></div>
     <div class="container">
-        <a class="mt-10" href="index.html"><i class="mr-5 ion-ios-home"></i>Home<i class="mlr-10 ion-chevron-right"></i></a>
-        <a class="mt-10" href="archive-page.html">Blog Archive<i class="mlr-10 ion-chevron-right"></i></a>
-        <a class="mt-10 color-ash" href="single-page.html">Single Blog</a>
+        <% if(data && data.post) {%>
+        <a class="mt-10" href="/blog"><i class="mr-5 ion-ios-home"></i>Home<i class="mlr-10 ion-chevron-right"></i></a>
+        <a class="mt-10" href="/blog/archive-page">TIN TỨC<i class="mlr-10 ion-chevron-right"></i></a>
+        <a class="mt-10 color-ash" href="/blog/post/<%= data.post.id%>"><%= data.post.title%></a>
+        <%}%>
     </div><!-- container -->
 </section>
 
@@ -105,8 +107,8 @@
                 <img src="/static/theme/images/slider-1-1200x900.jpg" alt="">
                 <h3 class="mt-30"><b><%= data.post.title%></b></h3>
                 <ul class="list-li-mr-20 mtb-15">
-                    <li>by <a href="#"><b>Olivia Capzallo </b></a> Jan 25, 2018</li>
-                    <li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i><%= data.post.bolt%></li>
+                    <li>by <a href="#"><b><%= data.post.author%> </b></a> Jan 25, 2018</li>
+                    <li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i>100></li>
                     <li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>30</li>
                 </ul>
 

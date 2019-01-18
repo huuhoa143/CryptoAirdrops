@@ -1,31 +1,29 @@
 var express = require("express");
 var router = express.Router();
 
-var post_md = require("../models/posts");
+var news_md = require('../models/news');
 
 router.get("/", function (req, res) {
-    var data = post_md.getAllPosts();
-    data.then(function (posts) {
+    var data = news_md.getAllNews();
+    console.log(data);
+    data.then(function (news) {
         var data = {
-            posts: posts,
+            posts: news,
             error: false
         };
+        console.log(data);
         res.render("blog/index", {data: data});
     }).catch(function (err) {
-        var data = {
-            error: "Could not get posts data"
-        };
+        error: "Could not get posts news data";
         res.render("blog/index", {data: data});
-    })
-    //res.render("blog/index");
-});
+    });
+})
 
 
 router.get("/post/:id", function (req, res) {
-    var data = post_md.getPostByID(req.params.id);
-
-    data.then(function (posts) {
-        var post = posts[0];
+    var data = news_md.getNewsByID(req.params.id);
+    data.then(function (news) {
+        var post = news[0];
         var result = {
             post: post,
             error: false
@@ -33,7 +31,7 @@ router.get("/post/:id", function (req, res) {
         res.render("blog/post", {data: result});
     }).catch(function (err) {
         var result = {
-            err: "Could not get post detail"
+            error: "Could not get post news detail"
         };
         res.render("blog/post", {data: result});
     });
@@ -83,6 +81,9 @@ router.get("/exchanges", function (req, res) {
 router.get("/analysis", function (req, res) {
     res.render("blog/analysis");
 });
+
+
+
 
 
 
