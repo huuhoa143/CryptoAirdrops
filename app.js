@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.set('trust proxy', 1) // trust first proxy
+
 app.use(session({
   secret: config.get("secret_key"),
   resave: false,

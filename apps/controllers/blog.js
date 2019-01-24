@@ -2,18 +2,14 @@ var express = require("express");
 var router = express.Router();
 
 var news_md = require('../models/news');
-var axios = require("axios");
 
-var idList = [];
 router.get("/", function (req, res) {
-    var data = news_md.getAllNews();
-    console.log(data);
+    let data = news_md.getAllNews();
     data.then(function (news) {
-        var data = {
+        let data = {
             posts: news,
             error: false
         };
-        console.log(data);
         res.render("blog/index", {data: data});
     }).catch(function (err) {
         error: "Could not get posts news data";
@@ -46,7 +42,18 @@ router.get("/contact", function (req, res) {
 
 // Archive Page
 router.get("/archive-page", function (req, res) {
-    res.render("blog/archive-page");
+
+    let data = news_md.getAllNews();
+    data.then(function (news) {
+        let data = {
+            posts: news,
+            error: false
+        };
+        res.render("blog/archive-page", {data: data});
+    }).catch(function (err) {
+        error: "Could not get news news data";
+        res.render("blog/archive-page", {data: data});
+    });
 });
 
 // Events
@@ -85,35 +92,6 @@ router.get("/analysis", function (req, res) {
 });
 
 
-function getAllId(encode_name) {
-    var url = "http://api.nhac.vn/client/search?type=song&limit=30&offset=0&keyword=" + encode_name;
-    console.log(url);
-    return axios.get(url).then(function (response) {
-        var data = response.data.data;
-        console.log(data.length);
-        for(var i = 0; i < data.length; i++) {
-            idList.push(data[i].id);
-        }
-        return Promise.resolve(idList);
-        //console.log(data);
-    }).catch(function (err) {
-        console.log("erro");
-    });
-}
-
-router.post("/tool", function (req, res) {
-    var data = req.body;
-    // console.log(data.url);
-    var encode_name = encodeURI(data.url);
-    getAllId(encode_name).then(function (data) {
-        if(data) {
-            res.render("blog/exchanges", {data: idList});
-
-        }
-    }).catch(function (err) {
-        res.render("blog/exchanges", {data:idList});
-    });
-});
 
 
 

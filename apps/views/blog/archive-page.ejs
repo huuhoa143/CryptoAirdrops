@@ -103,12 +103,12 @@
 					
 					<h4 class="p-title"><b>TIN TỨC</b></h4>
 					<div class="row">
-					
+					<%if(data && data.posts) {%>
 						<div class="col-sm-6">
 							<img src="/static/theme/images/crypto-news-6-600x450.jpg" alt="">
-							<h4 class="pt-20"><a href="#"><b>2017 Market Performance: <br/>Crypto vs.Stock</b></a></h4>
+							<h4 class="pt-20"><a href="/blog/post/<%= data.posts[0].id%>"><b><%= data.posts[0].title%><br/>Crypto vs.Stock</b></a></h4>
 							<ul class="list-li-mr-20 pt-10 mb-30">
-								<li class="color-lite-black">by <a href="#" class="color-black"><b>Olivia Capzallo,</b></a>
+								<li class="color-lite-black">by <a href="#" class="color-black"><b><%= data.posts[0].author%>,</b></a>
 								Jan 25, 2018</li>
 								<li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i>30,190</li>
 								<li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>47</li>
@@ -117,9 +117,9 @@
 						
 						<div class="col-sm-6">
 							<img src="/static/theme/images/crypto-news-5-600x450.jpg" alt="">
-							<h4 class="pt-20"><a href="#"><b>2017 Market Performance: <br/>Crypto vs.Stock</b></a></h4>
+							<h4 class="pt-20"><a href="/blog/post/<%= data.posts[1].id%>"><b><%= data.posts[1].title%><br/>Crypto vs.Stock</b></a></h4>
 							<ul class="list-li-mr-20 pt-10 mb-30">
-								<li class="color-lite-black">by <a href="#" class="color-black"><b>Olivia Capzallo,</b></a>
+								<li class="color-lite-black">by <a href="#" class="color-black"><b><%= data.posts[1].author%>,</b></a>
 								Jan 25, 2018</li>
 								<li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i>30,190</li>
 								<li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>47</li>
@@ -128,9 +128,9 @@
 					
 						<div class="col-sm-6">
 							<img src="/static/theme/images/crypto-news-4-600x450.jpg" alt="">
-							<h4 class="pt-20"><a href="#"><b>2017 Market Performance: <br/>Crypto vs.Stock</b></a></h4>
+							<h4 class="pt-20"><a href="/blog/post/<%= data.posts[2].id%>"><b><%= data.posts[2].title%> <br/>Crypto vs.Stock</b></a></h4>
 							<ul class="list-li-mr-20 pt-10 mb-30">
-								<li class="color-lite-black">by <a href="#" class="color-black"><b>Olivia Capzallo,</b></a>
+								<li class="color-lite-black">by <a href="#" class="color-black"><b><%= data.posts.author%>,</b></a>
 								Jan 25, 2018</li>
 								<li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i>30,190</li>
 								<li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>47</li>
@@ -193,7 +193,7 @@
 						</div><!-- col-sm-6 -->
 						
 					</div><!-- row -->
-					
+					<%}%>
 					<a class="dplay-block btn-brdr-primary mt-20 mb-md-50" href="#"><b>LOAD MORE</b></a>
 				</div><!-- col-md-9 -->
 				

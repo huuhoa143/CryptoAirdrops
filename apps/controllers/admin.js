@@ -53,7 +53,7 @@ router.post("/signup", function (req, res) {
         user = {
             email: user.email,
             password: password
-        }
+        };
 
         var result = user_md.addUser(user);
 
@@ -359,7 +359,7 @@ router.get("/news/edit/:id", function (req, res) {
 
 });
 
-router.put("/new/edit", function (req, res) {
+router.put("/news/edit", function (req, res) {
     var params = req.body;
 
     var data = news_md.updateNews(params);
